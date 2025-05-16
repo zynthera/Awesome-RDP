@@ -63,7 +63,7 @@ cd Awesome-RDP
 pip install -r requirements.txt
 ```
 
-### 2. GUI Mode (3D Modern)
+### 2. Run this file 
 
 ```bash
 python xploit_ninja_official.py
