@@ -53,6 +53,35 @@
 
 ---
 
+## 🚩 Fun Challenge – For Learning & Fun Only!
+
+> **Ready for a harmless hacking challenge?**  
+> This is a CTF-style, safe, local challenge embedded for you to test your Awesome-RDP skills.  
+> **No real harm, no illegal activity, just fun and learning.**
+
+**Challenge Task:**  
+1. Use Awesome-RDP (CLI or GUI) to connect to this simulated RDP target:
+    - IP: `127.0.0.1`
+    - Port: `13389`
+    - Key: `xploit_chal_2025`
+    - TOTP (if prompted): `654321`
+    - JWT: `chal_jwt_2025`
+    - ZKP: SHA256 hash of the string `rdp_challenge_2025`
+
+2. Once connected, run:  
+    ```
+    whoami
+    ```
+
+3. If you get the flag, DM a screenshot of your success to [@xploit.ninja](https://instagram.com/xploit.ninja) for a shoutout!
+
+**Remember:**  
+- This challenge is local and safe, and will not harm your system.
+- It's for personal skill-building and fun only.
+- Do **NOT** use this technique on real/unauthorized systems.
+
+---
+
 ## 🚦 Quickstart
 
 ### 1. Clone & Install
