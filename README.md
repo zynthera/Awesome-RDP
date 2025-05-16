@@ -26,16 +26,6 @@
 
 ---
 
-<div align="center" style="padding:24px; border-radius:24px; box-shadow:0 8px 32px 0 rgba(31,38,135,0.37); background:linear-gradient(135deg,#0f2027 0%,#2c5364 100%); color:#fff;">
-  <h2>🌐 3D Modern Experience</h2>
-  <p>
-    Awesome-RDP features a visually striking, modern 3D-inspired interface (GUI).  
-    Enjoy slick gradients, glassmorphism effects, and smooth interaction—making remote desktop management feel next-gen!
-  </p>
-</div>
-
----
-
 ## ✨ Features
 
 - 🔗 **One-command Connection:** Only IP & port needed to connect!
