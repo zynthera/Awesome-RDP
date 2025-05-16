@@ -43,6 +43,7 @@
 - 🇬🇧🇪🇸 **Multilanguage:** English & Spanish support.
 - 🎨 **Themes:** Light & dark UI.
 - 🧑‍💻 **100% Python:** Modern, modular, hackable.
+- 🚀 **Always Latest:** Continuously improved, error-free, bug-free, and blazing fast!
 
 ---
 
@@ -126,29 +127,8 @@ python xploit_ninja_official.py --load-session mysession.json
 
 ## 📄 License
 
-```text
-MIT License
-
-Copyright (c) 2025 zynthera
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+This project is licensed under the MIT License.  
+See [LICENSE](https://github.com/zynthera/Awesome-RDP/blob/main/LICENCE%20) for full details.
 
 ---
 
@@ -163,3 +143,10 @@ SOFTWARE.
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=0FF900&center=true&vCenter=true&width=435&lines=%23+H4ck+Th3+Pl4n3t...;XploitNinja+0n+th3+gr1nd...;Pwn+th3+g4t3w4y!+%F0%9F%92%BB%F0%9F%94%A5" alt="Evil Hacker Speak Animation">
 </p>
+
+<pre align="center">
+01001000 01100001 01100011 01101011 00100000 01110100 01101000 01100101 00100000 01110000 01101100 01100001 01101110 01100101 01110100 00101110 00101110 00101110
+<span style="color: #39ff14;">
+[ L34v3 n0 tr4c3. 0wn th3 n3tw0rk. St4y l337. ]
+</span>
+</pre>
