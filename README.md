@@ -5,7 +5,7 @@
 </p>
 
 > **Remote Desktop Progress** – Next-Gen RDP Simulation  
-> ⚡ Connect, transfer, and control with only IP & port—plus next-level security, blazing speed, and a touch of ninja magic! ⚡
+> ⚡ Connect, transfer, and control with only IP & port—featuring next-level security, blazing speed, and a modern 3D-inspired interface! ⚡
 
 ---
 
@@ -26,6 +26,16 @@
 
 ---
 
+<div align="center" style="padding:24px; border-radius:24px; box-shadow:0 8px 32px 0 rgba(31,38,135,0.37); background:linear-gradient(135deg,#0f2027 0%,#2c5364 100%); color:#fff;">
+  <h2>🌐 3D Modern Experience</h2>
+  <p>
+    Awesome-RDP features a visually striking, modern 3D-inspired interface (GUI).  
+    Enjoy slick gradients, glassmorphism effects, and smooth interaction—making remote desktop management feel next-gen!
+  </p>
+</div>
+
+---
+
 ## ✨ Features
 
 - 🔗 **One-command Connection:** Only IP & port needed to connect!
@@ -39,11 +49,17 @@
 - 💾 **Session Management:** Save & load sessions for fast reuse.
 - 🌍 **Proxy & Onion Routing:** Built-in proxy pool, onion hops, VPN, SDN.
 - 🤖 **AI-Powered Security:** LSTM anomaly detection, federated learning, Merkle logging, DPI.
-- 🖥️ **GUI & CLI:** Use with a beautiful Tkinter GUI or full-featured CLI.
-- 🇬🇧🇪🇸 **Multilanguage:** English & Spanish support.
-- 🎨 **Themes:** Light & dark UI.
+- 🖥️ **GUI & CLI:** Beautiful, modern 3D-inspired Tkinter GUI or full-featured CLI.
+- 🎨 **Themes:** Light, dark, and glassy 3D UI.
 - 🧑‍💻 **100% Python:** Modern, modular, hackable.
-- 🚀 **Always Latest:** Continuously improved, error-free, bug-free, and blazing fast!
+- 🚀 **Blazing Fast:** Optimized for instant connections and real-time feedback.
+- 🏅 **Auto-Healing:** Detects and resolves errors/issues automatically for a seamless experience.
+- 🛡️ **Firewall & Rate Limiting:** Built-in firewall checks and rate limiting for security.
+- 🧠 **Clipboard Sync:** Sync your clipboard securely with target.
+- 🗄️ **Config Import/Export:** Easily import/export settings and session configs.
+- 🧩 **Plugin System:** Extend with custom plugins (QUIC, Microservice, more).
+- 📝 **Detailed Logging:** Blockchain-style logs, Merkle tree hash, and audit trail.
+- 📊 **Anomaly Detection:** Real-time security checks with LSTM & SHAP explanations.
 
 ---
 
@@ -57,7 +73,7 @@ cd Awesome-RDP
 pip install -r requirements.txt
 ```
 
-### 2. GUI Mode
+### 2. GUI Mode (3D Modern)
 
 ```bash
 python xploit_ninja_official.py
@@ -84,21 +100,68 @@ python xploit_ninja_official.py --load-session mysession.json
 
 ---
 
-## 🧠 How It Works
+## ❓ FAQ (Frequently Asked Questions)
 
-- **Connects using only IP and port** (plus optional security).
-- Advanced security (Key, TOTP, JWT, ZKP) keeps your session safe.
-- Proxy, VPN, QUIC, SDN, and onion routing for privacy & resilience.
-- AI/ML modules detect anomalies, automate learning, and log all actions with Merkle tree hashes.
-- Everything is accessible via both GUI and CLI!
+<details>
+<summary><strong>What makes Awesome-RDP different from other RDP tools?</strong></summary>
 
----
+- Minimal connection flow: only IP & port needed to connect.
+- Advanced security: optional key, TOTP, JWT, and ZKP, plus onion routing, SDN, and AI-based anomaly detection.
+- Modern, modular, and extensible with a GUI that looks and feels 3D.
+- Auto-resolves errors and issues for a seamless, bug-free experience.
+</details>
 
-## ⚠️ Security Notes
+<details>
+<summary><strong>Is Awesome-RDP safe to use over the internet?</strong></summary>
 
-- **Default mode is for educational/internal use.**
-- Anyone with IP/port (and optional credentials) can connect—use wisely!
-- For production, add your own extra security & encryption layers.
+- By default, there is no authentication unless you supply key, TOTP, JWT, and ZKP—use only in trusted or internal networks.  
+- For public exposure, always use all auth options and consider running behind a VPN or firewall.
+</details>
+
+<details>
+<summary><strong>What Python version is required?</strong></summary>
+
+- Python 3.9 or higher.
+</details>
+
+<details>
+<summary><strong>How do I reset the rate limit?</strong></summary>
+
+- Use the `--reset-code ninja_reset_2025` CLI argument or enter the code in the GUI reset field.
+</details>
+
+<details>
+<summary><strong>How can I extend Awesome-RDP?</strong></summary>
+
+- Use the plugin system: create plugins by inheriting from the `Plugin` class.  
+- See `xploit_ninja_official.py` for examples like the QUIC or Microservice plugins.
+</details>
+
+<details>
+<summary><strong>How do I get support or report a bug?</strong></summary>
+
+- This project is designed to auto-resolve bugs and issues.  
+- For rare cases, DM me directly on Instagram: [@xploit.ninja](https://instagram.com/xploit.ninja)
+</details>
+
+<details>
+<summary><strong>How do I save and load sessions?</strong></summary>
+
+- Use the GUI's session save/load buttons, or the CLI flags `--save-session` and `--load-session`.
+</details>
+
+<details>
+<summary><strong>Is there a dark mode? 3D mode?</strong></summary>
+
+- Yes! Both dark, light, and modern 3D glass-like themes are supported in the GUI.
+</details>
+
+<details>
+<summary><strong>What if I encounter an error?</strong></summary>
+
+- The software heals itself automatically.  
+- Still have trouble? Contact me on Instagram: [@xploit.ninja](https://instagram.com/xploit.ninja)
+</details>
 
 ---
 
@@ -144,9 +207,7 @@ See [LICENSE](https://github.com/zynthera/Awesome-RDP/blob/main/LICENCE%20) for 
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=0FF900&center=true&vCenter=true&width=435&lines=%23+H4ck+Th3+Pl4n3t...;XploitNinja+0n+th3+gr1nd...;Pwn+th3+g4t3w4y!+%F0%9F%92%BB%F0%9F%94%A5" alt="Evil Hacker Speak Animation">
 </p>
 
-<pre align="center">
+<pre align="center" style="font-size:1.2em; color:#39ff14; background:linear-gradient(135deg,#232526 0%,#414345 100%); border-radius:18px; padding:16px;">
 01001000 01100001 01100011 01101011 00100000 01110100 01101000 01100101 00100000 01110000 01101100 01100001 01101110 01100101 01110100 00101110 00101110 00101110
-<span style="color: #39ff14;">
 [ L34v3 n0 tr4c3. 0wn th3 n3tw0rk. St4y l337. ]
-</span>
 </pre>
