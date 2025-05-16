@@ -19,7 +19,7 @@
   <a href="https://www.python.org/">
     <img src="https://img.shields.io/badge/python-3.9%2B-blue?logo=python" alt="Python version">
   </a>
-  <a href="https://github.com/zynthera/Awesome-RDP/tree/main/LICENSE">
+  <a href="https://github.com/zynthera/Awesome-RDP/blob/main/LICENCE%20">
     <img src="https://img.shields.io/github/license/zynthera/Awesome-RDP?color=brightgreen" alt="License">
   </a>
 </p>
