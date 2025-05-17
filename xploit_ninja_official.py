@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import tkinter as tk
 from tkinter import messagebox, filedialog, scrolledtext
 import logging
@@ -9,7 +10,7 @@ import platform
 import ssl
 import socket
 import threading
-from typing import Optional, Dict, Callable
+from typing import Optional, Dict
 import random
 import time
 import hashlib
@@ -327,7 +328,7 @@ class XploitNinjaOfficial:
 
     def simulate_onion_routing(self, target_ip: str, hops: int = 3) -> str:
         route = [self.select_healthy_proxy() for _ in range(hops)]
-        encrypted_path = AESGCM(self.aes_key).encrypt(self.aes_nonce, f"Onion:{target_ip}:{','.join(route)}".encode(), None)
+        AESGCM(self.aes_key).encrypt(self.aes_nonce, f"Onion:{target_ip}:{','.join(route)}".encode(), None)
         self.log_action(f"Onion routing: {len(route)} hops to {target_ip}")
         return f"Onion Routing: {len(route)} hops via {', '.join(route)}"
 
@@ -425,7 +426,7 @@ class XploitNinjaOfficial:
             encoding=serialization.Encoding.Raw,
             format=serialization.PublicFormat.Raw
         )
-        encrypted_data = AESGCM(self.aes_key).encrypt(self.aes_nonce, f"VPN:{target_ip}:{port}".encode(), serialized_key)
+        AESGCM(self.aes_key).encrypt(self.aes_nonce, f"VPN:{target_ip}:{port}".encode(), serialized_key)
         self.log_action(f"VPN tunnel with Kyber to {target_ip}:{port}")
         return f"VPN Tunnel: AES-256-GCM + Kyber to {target_ip}:{port}"
 
@@ -836,7 +837,7 @@ class XploitNinjaOfficial:
         self.zkp_entry = tk.Entry(self.root, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['entry_bg'], insertbackground=self.theme_colors['fg'], width=40)
         self.zkp_entry.pack()
         tk.Label(self.root, text=LANGUAGES[self.lang]['proxy_ip'].format(self.proxy_pool[self.current_proxy]), font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['bg'], name="proxy_ip_label").pack(pady=5)
-        tk.Label(self.root, text=LANGUAGES[self.lang]['status'].format(5), font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['bg'], name="status_label").pack(pady=5)
+        tk.Label(self.root, text=LANGUAGES[self.lang]['status'].format(self.rate_limit), font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['bg'], name="status_label").pack(pady=5)
         self.log_display = scrolledtext.ScrolledText(self.root, height=10, font=("Courier", 10), fg=self.theme_colors['fg'], bg=self.theme_colors['entry_bg'])
         self.log_display.pack(pady=5)
         tk.Label(self.root, text=LANGUAGES[self.lang]['reset_code'], font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['bg']).pack()
@@ -845,48 +846,116 @@ class XploitNinjaOfficial:
         tk.Label(self.root, text="Remote Command:", font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['bg']).pack()
         self.command_entry = tk.Entry(self.root, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['entry_bg'], insertbackground=self.theme_colors['fg'], width=40)
         self.command_entry.pack()
-        tk.Button(self.root, text=LANGUAGES[self.lang]['connect'], command=self.simulate_rdp_connection, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['reset_proxy'], command=self.reset_proxy, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['reset_rate'], command=self.reset_rate_limit, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['copy_flag'], command=self.copy_flag, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['learn'], command=self.show_edu_info, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['transfer_file'], command=self.select_file, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['exec_command'], command=lambda: self.execute_remote_command(self.command_entry.get(), self.rdp_ip_entry.get(), self.port_entry.get()), font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['save_session'], command=self.save_session, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['load_session'], command=self.load_session, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['export_config'], command=self.export_config, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
-        tk.Button(self.root, text=LANGUAGES[self.lang]['import_config'], command=self.import_config, font=("Courier", 12), fg=self.theme_colors['fg'], bg=self.theme_colors['button_bg'], activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['connect'],
+                  command=self.simulate_rdp_connection,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['reset_proxy'],
+                  command=self.reset_proxy,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['reset_rate'],
+                  command=lambda: self.reset_rate_limit(self.reset_code_entry.get().strip()),
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['copy_flag'],
+                  command=self.copy_flag,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['learn'],
+                  command=self.show_edu_info,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['transfer_file'],
+                  command=self.select_file,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['exec_command'],
+                  command=lambda: self.execute_remote_command(self.command_entry.get(),
+                                                                self.rdp_ip_entry.get(),
+                                                                self.port_entry.get()),
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['save_session'],
+                  command=self.save_session,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['load_session'],
+                  command=self.load_session,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['export_config'],
+                  command=self.export_config,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
+        tk.Button(self.root,
+                  text=LANGUAGES[self.lang]['import_config'],
+                  command=self.import_config,
+                  font=("Courier", 12),
+                  fg=self.theme_colors['fg'],
+                  bg=self.theme_colors['button_bg'],
+                  activebackground=self.theme_colors['active_bg']).pack(pady=5)
 
     def show_edu_info(self):
         info = """
-        XploitNinjaOfficial - Next-Gen RDP Simulation
-        ==========================================
-        State-of-the-art RDP simulation with advanced networking and AI.
+XploitNinjaOfficial - Next-Gen RDP Simulation
+==========================================
+State-of-the-art RDP simulation with advanced networking and AI.
 
-        Key Features:
-        1. QUIC for Low-Latency Connections
-        2. Onion Routing for Anonymity
-        3. Post-Quantum Kyber Encryption
-        4. LSTM-Based Anomaly Detection
-        5. Federated Learning Across Proxies
-        6. Zero-Knowledge Proofs
-        7. Merkle Tree Audit Trail
-        8. Microservice Architecture
-        9. Traffic Shaping and SDN
-        10. Dynamic Proxy Health Checks
+Key Features:
+1. QUIC for Low-Latency Connections
+2. Onion Routing for Anonymity
+3. Post-Quantum Kyber Encryption
+4. LSTM-Based Anomaly Detection
+5. Federated Learning Across Proxies
+6. Zero-Knowledge Proofs
+7. Merkle Tree Audit Trail
+8. Microservice Architecture
+9. Traffic Shaping and SDN
+10. Dynamic Proxy Health Checks
 
-        Challenge Tip:
-        - Connect to 192.168.1.100, port 3389
-        - Key: xploit_key_2025
-        - TOTP: JBSWY3DPEHPK3PXP
-        - JWT: Secret xploit_secret_2025
-        - ZKP: Hourly hash of zkp_ninja_2025
+Challenge Tip:
+- Connect to 192.168.1.100, port 3389
+- Key: xploit_key_2025
+- TOTP: JBSWY3DPEHPK3PXP
+- JWT: Secret xploit_secret_2025
+- ZKP: Hourly hash of zkp_ninja_2025
 
-        Security Notes:
-        - Use post-quantum crypto
-        - Implement federated learning
-        - Educational simulation only
-        """
+Security Notes:
+- Use post-quantum crypto
+- Implement federated learning
+- Educational simulation only
+"""
         self.show_info("Educational Information", info)
 
     def run(self):
