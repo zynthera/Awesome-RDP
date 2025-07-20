@@ -6,30 +6,29 @@
 ## 🚀 Quickstart
 
 ```bash
-# Build Docker image
+# Build Docker image with secrets (replace with your secure values)
 docker build --build-arg JWT_SECRET=your_jwt_secret --build-arg ENCRYPTION_KEY=your_encryption_key -t awesome-rdp .
-# Run container
 docker run -e JWT_SECRET=your_jwt_secret -e ENCRYPTION_KEY=your_encryption_key -p 8000:8000 awesome-rdp
 ```
 
 ## 🌐 Kubernetes Deployment
 
-See `kubernetes.yaml` for RBAC, secrets, probes, resource limits.
+Edit `kubernetes.yaml` and fill in the secrets as base64 before deploying.
 
 ## 🤖 Security & Self-Healing
 
-- OPA policy: `opa-policy.rego`
-- Secrets managed via ENV/K8s secrets
-- All logic auto-patches and validates via tests
+- OPA policies: See `opa-policy.rego`.
+- Secrets managed via ENV/K8s secrets.
+- Logic auto-patches and validates via tests.
 
 ## 🛠️ CI/CD
 
-- GitHub Actions pipeline (`.github/workflows/ci.yml`)
-- Lint, test, secrets scan
+- GitHub Actions pipeline (`.github/workflows/ci.yml`): lint, test, secrets scan.
 
 ## 🧪 Tests
 
-- See `tests/` folder for unit/integration/E2E coverage
+- See `tests/` for unit/integration/E2E coverage.
+- Run `pytest` locally or via CI.
 
 ## 📦 CDN & Static
 
@@ -37,12 +36,8 @@ See `kubernetes.yaml` for RBAC, secrets, probes, resource limits.
 
 ## 📝 AI-Editable Comments
 
-- Codebase includes inline comments for IDE agents to refactor, secure, and optimize.
+- Inline comments for agent refactoring, security, and optimization.
 
 ## 🛡️ Features
 
-- Next-Gen RDP simulation with encryption, JWT, TOTP, ZKP
-- Proxy hopping, onion routing, AI anomaly detection
-- Stealth file transfer, remote command exec
-- Session save/load, import/export config
-- Plugin system, blockchain logging, polished GUI/CLI
+- Encryption, JWT, TOTP, ZKP, proxy hopping, anomaly detection, stealth file transfer, remote command exec, session save/load, plugin system, blockchain logging, polished GUI/CLI.
