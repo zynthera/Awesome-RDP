@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: awesome-rdp
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rdp-secrets
+  namespace: awesome-rdp
+type: Opaque
+data:
+  jwt_secret: "" # Fill with base64-encoded secret
+  encryption_key: "" # Fill with base64-encoded secret
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: awesome-rdp
+  namespace: awesome-rdp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: awesome-rdp
+  template:
+    metadata:
+      labels:
+        app: awesome-rdp
+    spec:
+      containers:
+      - name: awesome-rdp
+        image: zynthera/awesome-rdp:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: rdp-secrets
+              key: jwt_secret
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: rdp-secrets
+              key: encryption_key
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: awesome-rdp
+  namespace: awesome-rdp
+spec:
+  type: ClusterIP
+  selector:
+    app: awesome-rdp
+  ports:
+  - port: 8000
+    targetPort: 8000
