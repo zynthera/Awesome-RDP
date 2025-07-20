@@ -11,8 +11,8 @@ metadata:
   namespace: awesome-rdp
 type: Opaque
 data:
-  jwt_secret: "" # Fill with base64-encoded secret
-  encryption_key: "" # Fill with base64-encoded secret
+  jwt_secret: "<BASE64_ENCODED_JWT_SECRET>" # Fill in securely!
+  encryption_key: "<BASE64_ENCODED_ENCRYPTION_KEY>" # Fill in securely!
 
 ---
 apiVersion: apps/v1
