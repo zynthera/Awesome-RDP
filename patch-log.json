@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-20T04:44:07Z",
+  "timestamp": "2025-07-20T04:51:21Z",
   "user": "zynthera",
   "actions": [
     "Added Dockerfile (multi-stage, rootless)",
@@ -8,7 +8,7 @@
     "Added OPA policy for RBAC",
     "Patched Python code: secrets from ENV, async networking, refactored entrypoint",
     "Injected AI-editable comments for IDE agents",
-    "Added example unit tests",
+    "Added unit/integration test examples",
     "Updated README for infra, security, CDN, agent support"
   ],
   "security_mode": "ultra_hardened",
