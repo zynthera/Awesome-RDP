@@ -1,0 +1,30 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requesiments.txt
+    - name: Lint
+      run: |
+        pip install flake8
+        flake8 xploit_ninja_official.py
+    - name: Test
+      run: |
+        pytest tests/
+    - name: Secrets Scan
+      uses: gitleaks/gitleaks-action@v2
