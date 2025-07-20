@@ -1,18 +1,7 @@
 #!/usr/bin/env python3
-import os
-import sys
-import argparse
-import logging
+import os, sys, argparse, logging
 from logging.handlers import RotatingFileHandler
-import threading
-import asyncio
-import socket
-import ssl
-import json
-import base64
-import datetime
-import random
-import re
+import threading, asyncio, re
 from typing import Optional, Dict
 from abc import ABC, abstractmethod
 
@@ -23,8 +12,7 @@ ENCRYPTION_KEY = os.getenv("ENCRYPTION_KEY", None)
 assert JWT_SECRET, "JWT_SECRET env variable must be set"
 assert ENCRYPTION_KEY, "ENCRYPTION_KEY env variable must be set"
 
-import pyotp
-import jwt
+import pyotp, jwt
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives import serialization
@@ -45,22 +33,17 @@ except ImportError:
     Sequential = None
     LSTM = None
     Dense = None
-import shap
-import merkletools
+import shap, merkletools
 
-# Configure logging with rotation
 logger = logging.getLogger("awesome_rdp")
 logger.setLevel(logging.INFO)
 handler = RotatingFileHandler('xploit_ninja_official.log', maxBytes=10 * 1024 * 1024, backupCount=5)
-handler.setFormatter(logging.Formatter(
-    '%(asctime)s - %(levelname)s - %(message)s'
-))
+handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 logger.addHandler(handler)
 
 # 🔐 SECURITY: Remove hardcoded proxy IPs, load from config if needed
 PROXY_ADDRESSES = os.getenv("PROXY_ADDRESSES", "").split(",") if os.getenv("PROXY_ADDRESSES") else []
 
-# Language support (trimmed)
 LANGUAGES = {
     'en': {
         'title': "XploitNinjaOfficial - Next-Gen RDP Simulation",
@@ -98,15 +81,10 @@ async def connect_rdp(ip, port, key, totp_code, jwt_token):
     logger.info(f"RDP response: {response}")
     return True
 
-# Add self-healing and error patch logic
 def self_heal():
     # Detect failures, patch, validate, rollback if needed
     pass  # Placeholder for auto-healing routines
 
-# 🚀 OPTIMIZE: Lazy load modules where possible
-# 🔁 REFACTOR: Extract GUI logic, file transfer, anomaly detection, etc. to separate files
-
-# Add entrypoint and health check
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="XploitNinjaOfficial RDP Tool")
     parser.add_argument("--health", action="store_true", help="Health check endpoint")
@@ -114,6 +92,4 @@ if __name__ == "__main__":
     if args.health:
         print("OK")
         sys.exit(0)
-    # 🔁 REFACTOR: Main logic launch
-    # TODO: Add CLI/GUI/Server startup, plugin system, etc.
     self_heal()
